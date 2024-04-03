@@ -1,0 +1,9 @@
+.comment-reply-count{
+  color: var(--color-scale-blue-4);
+  font-weight: 600;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.comment-reply{
+  margin-left: 1rem;
+}

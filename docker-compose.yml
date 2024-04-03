@@ -1,0 +1,52 @@
+version: '3.8'
+x-postgres-common: &postgres-common
+  image: postgres:16
+  environment:
+    POSTGRES_USER: playwright
+    POSTGRES_PASSWORD: playwright
+    PGPASSWORD: playwright
+    POSTGRES_DB: playwright
+
+services:
+  postgres:
+    <<: *postgres-common
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'playwright']
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+  postgres-init:
+    <<: *postgres-common
+    entrypoint: /bin/bash
+    depends_on:
+      - postgres
+    command:
+      - -c
+      - |
+        psql -U $$POSTGRES_USER -d $$POSTGRES_DB -a -h postgres -f /tmp/db.sql
+    user: '0:0'
+    volumes:
+      - ./:/tmp
+  api:
+    build: node:20-slim
+    restart: unless-stopped
+    command: ./server/server.js
+    entrypoint: ['node']
+    depends_on:
+      - postgres
+    ports:
+      - '8080:80'
+    volumes:
+      - ./:/workspace
+      - ./public:/workspace/public
+    healthcheck:
+      test: ['CMD', 'curl', '--fail', 'http://localhost:80/api/ping']
+      interval: 120s
+      timeout: 60s
+      retries: 5
+      start_period: 30s
+volumes:
+  postgres-db-volume:

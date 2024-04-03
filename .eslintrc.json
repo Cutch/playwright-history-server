@@ -1,0 +1,54 @@
+{
+  "root": true,
+  "ignorePatterns": "playwright/*",
+  "env": {
+    "commonjs": false,
+    "node": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "google",
+    "plugin:prettier/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly",
+    "process": true,
+    "globalThis": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "arrow-parens": "off",
+    "strict": "off",
+    "no-console": "warn",
+    "comma-dangle": "off",
+    "max-len": "off",
+    "object-curly-spacing": "off",
+    "indent": "off",
+    "require-jsdoc": "off",
+    "one-var": "off",
+    "no-unused-vars": "warn",
+    "no-undef": "error",
+    "prefer-const": "warn",
+    "no-invalid-this": "off",
+    "operator-linebreak": "off",
+    "prefer-rest-params": "warn",
+    "valid-jsdoc": "off",
+    "camelcase": "warn",
+    "quotes": ["warn"],
+    "quote-props": "off",
+    "new-cap": "warn",
+    "space-before-function-paren": "off",
+    "no-nested-ternary": "off",
+    "linebreak-style": "off",
+    "semi": "off",
+    "prettier/prettier": "off"
+  }
+}

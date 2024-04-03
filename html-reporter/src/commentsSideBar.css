@@ -1,0 +1,30 @@
+.comment-pane {
+  position: relative;
+  background-color: var(--color-canvas-subtle);
+  border: 1px solid var(--color-border-default);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  max-width: 450px;
+  min-width: 225px;
+}
+.comment-pane-content{
+  position: sticky;
+  top: 0;
+  overflow: auto;
+  max-height: 100vh;
+}
+.comment-pane-content-title{
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 0.5rem;
+}
+.comment-pane-content-user{
+  position: sticky;
+  bottom: 0;
+  background: var(--color-canvas-default-background);
+  width: 100%;
+  padding: .5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}

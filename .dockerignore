@@ -1,0 +1,11 @@
+# node_modules
+# blob-reports
+# playwright-report
+# .git
+# playwright/*
+# !playwright/packages
+# !playwright/utils
+# !playwright/package.json
+# !playwright/package.lock.json
+# !playwright/tsconfig.json
+*

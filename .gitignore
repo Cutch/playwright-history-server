@@ -1,0 +1,15 @@
+node_modules
+/build
+/dist
+dist
+/blob-reports/
+/playwright/.cache/
+.serverless
+blob-reports
+# System Files
+.DS_Store
+Thumbs.db
+old/
+/summary-html.js
+/public/*
+!/public/favicon.ico

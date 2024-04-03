@@ -1,0 +1,95 @@
+.test-history-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  position: relative;
+}
+.test-history-container > div {
+  flex: 1 0 auto;
+}
+.test-history-label{
+  font-weight: 600;
+  min-width: 55px;
+  display: inline-block;
+}
+
+.test-history-nibs{
+  width: 5px;
+  cursor: pointer;
+  position: relative;
+}
+.test-duration{
+  min-width: 50px;
+  display: inline-block;
+}
+.test-history-outcome{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.test-history-outcome:hover:after{
+  content: '';
+  position: absolute;
+  background-color: #fff4;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.test-history-nibs:after{
+  content: '';
+}
+.test-history-nibs.active:after{
+  content: '';
+  position: absolute;
+  background-color: #fff4;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+/* .test-history-nibs:hover:after{
+  content: '';
+  position: absolute;
+  background-color: #fff4;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+} */
+.test-history-right-side{
+  flex: 1 1 auto !important;
+  width: 100%;
+  position: relative;
+}
+.test-history-timelines{
+  display: flex;
+  overflow: auto;
+}
+.test-history-comment{
+  margin-left: -7px;
+  cursor: pointer;
+  position: relative;
+  height: 16px;
+}
+
+
+.test-history-comment>svg{
+  margin: 0;
+}
+.test-history-right-side{
+  display: flex;
+  flex-direction: column;
+}
+.test-history-comments-timeline{
+  position: relative;
+  margin-bottom: 0.25rem;
+}
+
+@media only screen and (max-width: 900px) {
+  .test-history-comment{
+    position: unset;
+    margin-left: 0;
+  }
+  .test-history-comments-timeline{
+    display: flex;
+    flex-flow: row wrap;
+  }
+}

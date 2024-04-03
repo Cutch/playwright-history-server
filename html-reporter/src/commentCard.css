@@ -1,0 +1,44 @@
+.comment-card{
+  border: 1px solid var(--color-border-default);
+  padding: 1rem;
+  max-width: 800px;
+}
+.comment-card-context{
+  white-space: nowrap;
+  overflow: hidden;
+}
+.comment-card-title{
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  gap: 1rem;
+  flex-flow: row wrap;
+}
+.comment-card-footer{
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.8;
+  flex-flow: row wrap;
+  gap: 10px;
+}
+.comment-card-body{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.comment-card-status-unresolved {
+  color: "#776516";
+
+}
+.comment-card-status-resolved {
+  color: "#16772a";
+}
+.comment-card-context-title{
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
