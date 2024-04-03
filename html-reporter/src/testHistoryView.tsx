@@ -97,7 +97,7 @@ export const TestHistoryView: React.FC<{
         ref.current?.scrollIntoView({ behavior: "auto", block: "start", inline: "nearest" });
       }
     }
-  },[])
+  },[outcomeByRun])
 
   return <>
     <div className='test-history-container' ref={ref}>
