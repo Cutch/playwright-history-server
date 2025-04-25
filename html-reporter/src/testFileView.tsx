@@ -71,13 +71,18 @@ export const TestFileView: React.FC<React.PropsWithChildren<{
         return t;
       }, new Map<string, TestCaseSummary[]>()),
     [filter, file])
+    const stats = file.stats;
   return <Chip
     expanded={isFileExpanded(file.fileId)}
     noInsets={true}
     setExpanded={(expanded => setFileExpanded(file.fileId, expanded))}
-    header={<span>
-      {file.fileName}
-    </span>}>
+    header={<>
+        <span>{file.fileName}</span>
+        <span style={{marginLeft: 'auto'}}></span>
+        <span style={{marginLeft: 16}}>{!!stats.unexpected && statusIcon('unexpected')} Failed <span className='d-inline counter'>{stats.unexpected}</span></span>
+        <span style={{marginLeft: 16}}>{!!stats.flaky && statusIcon('flaky')} Flaky <span className='d-inline counter'>{stats.flaky}</span></span>
+      </>
+    }>
     {Array.from(testGroups.values()).map((tests:TestCaseSummary[], i) =>
       <div key={`test-${tests[0].testId}`} className={'test-file-test'}>{/*test-file-test-outcome-' + test.outcome*/}
         <div className='test-file-test-title'>

@@ -31,7 +31,7 @@ services:
     volumes:
       - ./:/tmp
   api:
-    build: node:20-slim
+    image: node:20-slim
     restart: unless-stopped
     command: ./server/server.js
     entrypoint: ['node']

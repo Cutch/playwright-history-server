@@ -29,6 +29,7 @@ export const Chip: React.FC<{
   dataTestId?: string,
   targetRef?: React.RefObject<HTMLDivElement>,
 }> = ({ header, expanded, setExpanded, children, noInsets, dataTestId, targetRef }) => {
+  expanded = !expanded;
   return <div className='chip' data-testid={dataTestId} ref={targetRef}>
     <div
       className={'chip-header' + (setExpanded ? ' expanded-' + expanded : '')}

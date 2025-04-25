@@ -8,7 +8,7 @@ The playwright history server allows users to collaborate, comment and view the 
 Clone the git repository  
 Run `npm i` and `npm run build` in the base directory. Note the file `summary-html.js` will be built to the main directory and is the reporter used for playwright.
 
-If you want to make any changes to the react code base just run `npm run build` and the changes will be built and servered by the server.
+If you want to make any changes to the react code base just run `npm run build` and the changes will be built and served by the server.
 
 ### With Docker (Recommended)
 
