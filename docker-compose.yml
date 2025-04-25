@@ -33,7 +33,7 @@ services:
   api:
     image: node:20-slim
     restart: unless-stopped
-    command: ./server/server.js
+    command: /workspace/server/server.js
     entrypoint: ['node']
     depends_on:
       - postgres

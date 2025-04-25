@@ -4,7 +4,7 @@
     "build": "npm run build:reporter && npm run build:html-reporter",
     "build:reporter": "cd reporter && npm run build",
     "build:html-reporter": "cd html-reporter && npm run build",
-    "start": "docker-compose up -d"
+    "start": "docker compose up -d"
   },
   "dependencies": {
     "compression": "^1.7.4",
