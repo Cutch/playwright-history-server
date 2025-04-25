@@ -69,7 +69,7 @@ class SummaryHtmlReporter implements Reporter {
     let dateString = result.startTime.toISOString().replace(/:/g, '-').split('T').join('_')
     dateString = dateString.slice(0, dateString.indexOf('Z'))
     this._runName = `run_${dateString}`
-
+    console.log(`report_url: ${process.env.API}/${process.env.ENVIRONMENT}/${this._runName}`);
     const projectSuites = this.suite.suites;
     const data: any[] = [];
     const builder = new HtmlBuilder(this._runName, this.config);

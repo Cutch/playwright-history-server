@@ -73,21 +73,25 @@ app.use(express.static(path.join(__dirname, '../public'), { index: false }));
 
 app.get('/:environment?', async (req, res) => {
   if (!res.headersSent) {
-    const environment = req.params.environment;
-    const directories = (
-      await fs.readdir(path.join(__dirname, environment ? '../public/' + environment : '../public/'), { withFileTypes: true })
-    )
-      .filter((dirent) => dirent.isDirectory())
-      .map((dirent) => dirent.name);
+    try {
+      const environment = req.params.environment;
+      const directories = (
+        await fs.readdir(path.join(__dirname, environment ? '../public/' + environment : '../public/'), { withFileTypes: true })
+      )
+        .filter((dirent) => dirent.isDirectory())
+        .map((dirent) => dirent.name);
 
-    res.send(
-      `<html><head>
-      <style>a {display: block;padding: 0.5rem 1rem;border: 1px solid #30363d;border-radius: 10px;background: #292929;color: #c9d1d9;text-decoration: none;}</style>
-      </head>
-      <body style="background: #121212;">
-      <div style="display: flex;gap: 1rem;flex-direction: row;flex-wrap: wrap;">
-      ${directories.map((d) => `<a href="./${d}/">${d}</a>`).join('')}</div></body></html>`,
-    );
+      res.send(
+        `<html><head>
+        <style>a {display: block;padding: 0.5rem 1rem;border: 1px solid #30363d;border-radius: 10px;background: #292929;color: #c9d1d9;text-decoration: none;}</style>
+        </head>
+        <body style="background: #121212;">
+        <div style="display: flex;gap: 1rem;flex-direction: row;flex-wrap: wrap;">
+        ${directories.map((d) => `<a href="./${d}/">${d}</a>`).join('')}</div></body></html>`,
+      );
+    } catch (e) {
+      res.status(404).send('Environment not found');
+    }
   }
 });
 
