@@ -3,6 +3,7 @@
   font-weight: 600;
   padding: 0.5rem;
   cursor: pointer;
+  user-select: none;
 }
 .comment-reply{
   margin-left: 1rem;

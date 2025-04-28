@@ -72,10 +72,10 @@ const StatsNavView: React.FC<{
       Passed <span className='d-inline counter'>{stats.expected}</span>
     </Link>
     <Link className='subnav-item' href='#?q=s:failed'>
-      {!!stats.unexpected && statusIcon('unexpected')} Failed <span className='d-inline counter'>{stats.unexpected}</span>
+      {statusIcon('unexpected')} Failed <span className='d-inline counter'>{stats.unexpected}</span>
     </Link>
     <Link className='subnav-item' href='#?q=s:flaky'>
-      {!!stats.flaky && statusIcon('flaky')} Flaky <span className='d-inline counter'>{stats.flaky}</span>
+      {statusIcon('flaky')} Flaky <span className='d-inline counter'>{stats.flaky}</span>
     </Link>
     <Link className='subnav-item' href='#?q=s:skipped'>
       Skipped <span className='d-inline counter'>{stats.skipped}</span>

@@ -39,7 +39,7 @@ export const TestFilesView: React.FC<{
       const tests = file.tests.filter(t => filter.matches(t));
       visibleTests += tests.length;
       if (tests.length)
-        result.push({ file, defaultExpanded: true });
+        result.push({ file, defaultExpanded: false });
     }
     return result;
   }, [report, filter]);

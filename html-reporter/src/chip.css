@@ -29,6 +29,7 @@
   text-overflow: ellipsis;
   display: flex;
   flex-flow: wrap;
+  align-items: center;
 }
 
 .chip-header.expanded-false {

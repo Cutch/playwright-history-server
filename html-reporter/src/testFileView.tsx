@@ -16,7 +16,7 @@
 
 import type { HTMLReport, TestCaseSummary, TestFileSummary } from './types';
 import * as React from 'react';
-import { generateURL, msToString } from './uiUtils';
+import { eventDispatch, generateURL, msToString, useEventListener } from './uiUtils';
 import { Chip } from './chip';
 import type { Filter } from './filter';
 import { generateTraceUrl, Link, navigate, ProjectLink } from './links';
@@ -71,16 +71,24 @@ export const TestFileView: React.FC<React.PropsWithChildren<{
         return t;
       }, new Map<string, TestCaseSummary[]>()),
     [filter, file])
-    const stats = file.stats;
+  const stats = file.stats;
+  const expanded = isFileExpanded(file.fileId)
+  // @ts-ignore
+  useEventListener('showComment', ({testName, runName})=>{
+    if(testGroups.has(testName) && !expanded){
+      setFileExpanded(file.fileId, true)
+      setTimeout(()=>eventDispatch('showComment', {testName, runName}), 100)
+    }
+  },[expanded, testGroups])
   return <Chip
-    expanded={isFileExpanded(file.fileId)}
+    expanded={expanded}
     noInsets={true}
     setExpanded={(expanded => setFileExpanded(file.fileId, expanded))}
     header={<>
         <span>{file.fileName}</span>
         <span style={{marginLeft: 'auto'}}></span>
-        <span style={{marginLeft: 16}}>{!!stats.unexpected && statusIcon('unexpected')} Failed <span className='d-inline counter'>{stats.unexpected}</span></span>
-        <span style={{marginLeft: 16}}>{!!stats.flaky && statusIcon('flaky')} Flaky <span className='d-inline counter'>{stats.flaky}</span></span>
+        {stats.unexpected > 0 ? <span style={{marginLeft: 16}}>{statusIcon('unexpected')}<span className='d-inline counter'>{stats.unexpected}</span></span>:null}
+        {stats.flaky > 0 ? <span style={{marginLeft: 16}}>{statusIcon('flaky')}<span className='d-inline counter'>{stats.flaky}</span></span>:null}
       </>
     }>
     {Array.from(testGroups.values()).map((tests:TestCaseSummary[], i) =>
