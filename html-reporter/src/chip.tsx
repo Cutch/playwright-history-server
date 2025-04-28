@@ -50,7 +50,7 @@ export const AutoChip: React.FC<{
   dataTestId?: string,
   targetRef?: React.RefObject<HTMLDivElement>,
 }> = ({ header, initialExpanded, noInsets, children, dataTestId, targetRef }) => {
-  const [expanded, setExpanded] = React.useState(!!initialExpanded);
+  const [expanded, setExpanded] = React.useState(initialExpanded || initialExpanded === undefined);
   return <Chip
     header={header}
     expanded={expanded}

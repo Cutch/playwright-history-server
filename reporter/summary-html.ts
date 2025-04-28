@@ -314,7 +314,7 @@ class HtmlBuilder {
   private async _serializeAttachments(attachments: JsonAttachment[]): Promise<TestAttachment[]> {
     let lastAttachment: TestAttachment | undefined;
     return (await Promise.all(attachments.map(async a => {
-      const baseUrl = `${process.env.API}/public/${process.env.ENVIRONMENT}/${this._runName}`
+      const baseUrl = `${process.env.API}/${process.env.ENVIRONMENT}/${this._runName}/`
       if (a.name === 'trace')
         this._hasTraces = true;
 

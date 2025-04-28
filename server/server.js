@@ -98,6 +98,9 @@ app.get('/:environment?', async (req, res) => {
 app.get('/:environment/:runName/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
+app.get('/:environment/:runName/index.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 
 app.use((err, req, res, next) => {
   if (err) {
