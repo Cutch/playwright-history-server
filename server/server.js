@@ -117,3 +117,31 @@ const server = http
 process.on('SIGINT', function () {
   server.close();
 });
+
+// Cleanup old files
+setInterval(function () {
+  walkDir(path.join(__dirname, '../public'), function (filePath) {
+    fs.stat(filePath, function (err, stat) {
+      const now = new Date().getTime();
+      const endTime = new Date(stat.mtime).getTime() + 2592000000; // 30 days in miliseconds
+
+      if (err) {
+        return console.error(err);
+      }
+
+      if (now > endTime) {
+        return fs.unlink(filePath, function (err) {
+          if (err) return console.error(err);
+        });
+      }
+    });
+  });
+}, 3600000); // every 5 hours
+
+function walkDir(dir, callback) {
+  fs.readdirSync(dir).forEach((f) => {
+    const dirPath = path.join(dir, f);
+    const isDirectory = fs.statSync(dirPath).isDirectory();
+    isDirectory ? walkDir(dirPath, callback) : callback(path.join(dir, f));
+  });
+}
